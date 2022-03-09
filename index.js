@@ -58,3 +58,30 @@ function renderCities() {
       console.log(li);
       cityList.prepend(li);
     }
+
+     //Get Response weather for the first city only
+     if (!city){
+        return
+    } 
+    else{
+        getResponseWeather(city)
+    };
+}   
+
+  //When form is submitted...
+  $("#add-city").on("click", function(event){
+      event.preventDefault();
+
+    // This line will grab the city from the input box
+    var city = $("#city-input").val().trim();
+    
+    // Return from function early if submitted city is blank
+    if (city === "") {
+        return;
+    }
+    //Adding city-input to the city array
+    cities.push(city);
+    // Store updated cities in localStorage, re-render the list
+  storeCities();
+  renderCities();
+  });
